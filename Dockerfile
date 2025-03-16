@@ -1,26 +1,35 @@
+# Базовый образ Alpine Linux с Python 3.12
 FROM python:3.12-alpine
 
+# Установка переменных окружения
 ENV APP_PATH=/project \
     PYTHONPATH=/project/src \
-    COVERAGE_FILE=/tmp/coverage.db \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PYTEST_ADDOPTS="-p no:cacheprovider"
+    POETRY_VIRTUALENVS_CREATE=false \
+    POETRY_CACHE_DIR=/tmp/poetry_cache
 
+# Создание рабочей директории
 WORKDIR $APP_PATH
 
-EXPOSE 8080
+# Установка зависимостей системы
+RUN apk update && apk add --no-cache gcc musl-dev linux-headers
 
-COPY ./pyproject.toml ./poetry.lock* ./
+# Копирование файлов Poetry
+COPY pyproject.toml poetry.lock* ./
 
-RUN apk update \
-    && apk add --no-cache make \
-    && adduser -u101 -D python-user \
-    && pip install poetry==1.7.0 \
+# Установка Poetry и зависимостей
+RUN pip install --no-cache-dir poetry==1.7.0 \
     && poetry config virtualenvs.create false \
-    && poetry install --no-ansi
+    && poetry install --no-root --no-dev
 
-COPY . ./
+# Копирование исходного кода
+COPY . .
 
+# Смена пользователя
+RUN adduser -u 101 -D python-user
 USER python-user
 
+# Порт приложения
+EXPOSE 8080
+
+# Команда запуска приложения
 CMD ["python", "src/app/main.py"]
