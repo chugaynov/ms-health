@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-health-deployment
+  namespace: dev
+  labels:
+    app: ms-health
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: ms-health
+  template:
+    metadata:
+      labels:
+        app: ms-health
+    spec:
+      containers:
+        - name: ms-health-container
+          image: achugaynov/ms-health:v1.0
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          livenessProbe:  # Liveness Probe
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5  # Задержка перед первой проверкой
+            periodSeconds: 10       # Интервал между проверками
+            timeoutSeconds: 5       # Таймаут для одной проверки
+            failureThreshold: 3     # Количество неудачных попыток перед перезапуском
+          readinessProbe:  # Readiness Probe
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5  # Задержка перед первой проверкой
+            periodSeconds: 10       # Интервал между проверками
+            timeoutSeconds: 5       # Таймаут для одной проверки
+            failureThreshold: 3     # Количество неудачных попыток перед пометкой как "неготовый"
