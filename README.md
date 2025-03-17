@@ -57,10 +57,21 @@ kubectl delete ingress ms-health-ingress
 kubectl describe pod nginx-ingress-nginx-controller-s8cdr -n nginx
 ```
 
+### Создать namespace
 ```shell
 kubectl create namespace dev
+```
+
+### Создать "приложение"
+```shell
 kubectl apply -f k8s/.
 ```
+
+### Удалить "приложение"
+```shell
+kubectl delete -f k8s/.
+```
+
 
 # Nginx Ingress из helm
 ### Отключить nginx из стандартных addon-ов minikube
