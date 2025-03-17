@@ -107,3 +107,10 @@ minikube tunnel
 
 # Kubernetes на CLO RU
 https://clo.ru/help/containerization/installation
+
+
+# Тесты через Postman
+Документация здесь https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-scripts/
+```shell
+newman run otus-app-health.postman_collection.json
+```
