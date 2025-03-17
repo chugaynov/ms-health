@@ -63,11 +63,35 @@ kubectl apply -f k8s/.
 ```
 
 # Nginx Ingress из helm
+### Отключить nginx из стандартных addon-ов minikube
+```shell
+minikube addons disable ingress
+minikube addons list
+```
+
+### Установка из helm
 ```shell
 kubectl create namespace nginx && \
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/ && \
 helm repo update && \
-helm install nginx ingress-nginx/ingress-nginx --namespace nginx -f k8s/nginx-ingress.yaml
+helm install nginx ingress-nginx/ingress-nginx --namespace nginx -f k8s/nginx/nginx-ingress.yaml
+```
+
+### Проверить NGINX
+```shell
+kubectl get all -n nginx 
+kubectl logs -n nginx $(kubectl get pods -n nginx -l app.kubernetes.io/name=ingress-nginx -o jsonpath='{.items[0].metadata.name}')
+kubectl get svc -n nginx
+```
+
+### Провалиться в minikube
+```shell
+minikube ssh
+```
+
+### НЕ ЗАБЫТЬ сделать туннель на localhost (не закрывать, пока нужен туннель)
+```shell
+minikube tunnel
 ```
 
 # Kubernetes на CLO RU

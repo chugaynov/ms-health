@@ -11,11 +11,11 @@ spec:
   - host: arch.homework
     http:
       paths:
-        - path: /otusapp($|/)(.*)
-          pathType: Prefix
+        - path: /otusapp/([a-z]+)/(.*)
+          pathType: ImplementationSpecific
           backend:
-            service: 
+            service:
               name: ms-health-service
-              port: 
+              port:
                 number: 8080
 

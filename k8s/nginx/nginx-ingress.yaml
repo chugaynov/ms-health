@@ -1,5 +1,6 @@
 controller:
   kind: DaemonSet
+  replicaCount: 2
 #  resources:
 #    requests:
 #      cpu: "100m"
@@ -15,3 +16,4 @@ controller:
       https: 443
   service:
     type: NodePort
+    use-forwarded-headers: "true"
