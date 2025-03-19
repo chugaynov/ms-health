@@ -80,7 +80,7 @@ minikube addons disable ingress
 minikube addons list
 ```
 
-### Установка из helm
+### Установка NGINX из helm
 ```shell
 kubectl create namespace nginx && \
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/ && \
@@ -108,6 +108,12 @@ minikube tunnel
 # Kubernetes на CLO RU
 https://clo.ru/help/containerization/installation
 
+
+# Утилиты для работы с K8s
+* kubectx - для выбора и смены контекстов
+  * Чтобы собрать все контексты на локальном ПК KUBECONFIG=~/.kube/config:~/.kube/config-cluster1:~/.kube/config-cluster2 kubectl config view --flatten > ~/.kube/config-combined 
+* kubens - для просмотра и выбора namespace-ов
+* k9s - утилита для быстрой навигации
 
 # Тесты через Postman
 Документация здесь https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-scripts/

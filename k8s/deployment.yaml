@@ -34,7 +34,7 @@ spec:
               cpu: "500m"
           livenessProbe:  # Liveness Probe
             httpGet:
-              path: /health
+              path: /otusapp/achugaynov/health
               port: 8080
             initialDelaySeconds: 5  # Задержка перед первой проверкой
             periodSeconds: 10       # Интервал между проверками
@@ -42,7 +42,7 @@ spec:
             failureThreshold: 3     # Количество неудачных попыток перед перезапуском
           readinessProbe:  # Readiness Probe
             httpGet:
-              path: /health
+              path: /otusapp/achugaynov/health
               port: 8080
             initialDelaySeconds: 5  # Задержка перед первой проверкой
             periodSeconds: 10       # Интервал между проверками
