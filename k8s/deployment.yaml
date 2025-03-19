@@ -32,19 +32,19 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
-          livenessProbe:  # Liveness Probe
-            httpGet:
-              path: /otusapp/achugaynov/health
-              port: 8080
-            initialDelaySeconds: 5  # Задержка перед первой проверкой
-            periodSeconds: 10       # Интервал между проверками
-            timeoutSeconds: 5       # Таймаут для одной проверки
-            failureThreshold: 3     # Количество неудачных попыток перед перезапуском
-          readinessProbe:  # Readiness Probe
-            httpGet:
-              path: /otusapp/achugaynov/health
-              port: 8080
-            initialDelaySeconds: 5  # Задержка перед первой проверкой
-            periodSeconds: 10       # Интервал между проверками
-            timeoutSeconds: 5       # Таймаут для одной проверки
-            failureThreshold: 3     # Количество неудачных попыток перед пометкой как "неготовый"
+#          livenessProbe:  # Liveness Probe
+#            httpGet:
+#              path: /otusapp/achugaynov/health
+#              port: 8080
+#            initialDelaySeconds: 5  # Задержка перед первой проверкой
+#            periodSeconds: 10       # Интервал между проверками
+#            timeoutSeconds: 5       # Таймаут для одной проверки
+#            failureThreshold: 3     # Количество неудачных попыток перед перезапуском
+#          readinessProbe:  # Readiness Probe
+#            httpGet:
+#              path: /otusapp/achugaynov/health
+#              port: 8080
+#            initialDelaySeconds: 5  # Задержка перед первой проверкой
+#            periodSeconds: 10       # Интервал между проверками
+#            timeoutSeconds: 5       # Таймаут для одной проверки
+#            failureThreshold: 3     # Количество неудачных попыток перед пометкой как "неготовый"
