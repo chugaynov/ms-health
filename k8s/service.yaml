@@ -5,9 +5,14 @@ metadata:
   namespace: dev
 spec:
   selector:
-    app: ms-health
-  type: LoadBalancer  # Используйте ClusterIP, если не нужен внешний доступ
+    app: ms-health-service
+  type: ClusterIP
+      #  ClusterIP — внутренний сервис.
+      #  NodePort — открытие порта на нодах для внешнего доступа.
+      #  LoadBalancer — создание внешнего балансировщика нагрузки.
+      #  ExternalName — связывание с внешним DNS-именем.
+      #  Headless Service — сервис без ClusterIP для прямого доступа к подам.
   ports:
     - protocol: TCP
       port: 8080         # Внешний порт для доступа к сервису
-      targetPort: 8080 # Порт контейнера
+      targetPort: 8080   # Порт контейнера

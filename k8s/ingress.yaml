@@ -18,4 +18,14 @@ spec:
               name: ms-health-service
               port:
                 number: 8080
+  - host: arch-homework.kalk.pro
+    http:
+      paths:
+        - path: /otusapp/([a-z]+)/(.*)
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: ms-health-service
+              port:
+                number: 8080
 

@@ -8,7 +8,7 @@ docker buildx create --use
 
 ### 2. Собрать образ
 ```shell
-docker buildx build --platform linux/amd64 -t {dockerhub-username}/ms-health:v1.0 .
+docker buildx build --platform linux/amd64 -t {dockerhub-username}/ms-health:{tagVersion} .
 ```
 
 ### 3. Авторизоваться в Docker Hub
@@ -18,12 +18,12 @@ docker login
 
 ### 4. Отправить образ в Docker Hub
 ```shell
-docker push {dockerhub-username}/ms-health:v1.0
+docker push {dockerhub-username}/ms-health:{tagVersion}
 ```
 
 ### 5. Запустить контейнер
 ```shell
-docker run -p 8080:8080 {dockerhub-username}/ms-health:v1.0
+docker run -p 8080:8080 {dockerhub-username}/ms-health:{tagVersion}
 ```
 
 
@@ -31,10 +31,10 @@ docker run -p 8080:8080 {dockerhub-username}/ms-health:v1.0
 ### DockerHub сборка под AMD64
 ```shell
 docker buildx create --use
-docker buildx build --platform linux/amd64 -t achugaynov/ms-health:v1.0 .
+docker buildx build --platform linux/amd64 -t achugaynov/ms-health:v1.2 .
 docker login
-docker push achugaynov/ms-health:v1.0
-docker run -p 8080:8080 achugaynov/ms-health:v1.0
+docker push achugaynov/ms-health:v1.2
+docker run -p 8080:8080 achugaynov/ms-health:v1.2
 ```
 
 ### Локальная сборка под ARM64
